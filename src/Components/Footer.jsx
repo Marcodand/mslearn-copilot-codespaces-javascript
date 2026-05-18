@@ -40,6 +40,73 @@ const Footer = (props) => {
     youTube,
   } = props;
 
+  const socialLinks = [
+    {
+      value: email,
+      href: `mailto:${email}`,
+      icon: envelopeIcon,
+      alt: "Email",
+      animation: "pulse",
+      external: false,
+    },
+    {
+      value: devDotTo,
+      href: `https://dev.to/${devDotTo}`,
+      icon: devDotToIcon,
+      alt: "Dev.to",
+      animation: "bounce",
+      external: true,
+    },
+    {
+      value: gitHub,
+      href: `https://github.com/${gitHub}`,
+      icon: gitHubIcon,
+      alt: "GitHub",
+      animation: "spin",
+      external: true,
+    },
+    {
+      value: instagram,
+      href: `https://www.instagram.com/${instagram}`,
+      icon: instagramIcon,
+      alt: "Instagram",
+      animation: "wiggle",
+      external: true,
+    },
+    {
+      value: linkedIn,
+      href: `https://www.linkedin.com/in/${linkedIn}`,
+      icon: linkedInIcon,
+      alt: "LinkedIn",
+      animation: "pulse",
+      external: true,
+    },
+    {
+      value: medium,
+      href: `https://medium.com/@${medium}`,
+      icon: mediumIcon,
+      alt: "Medium",
+      animation: "bounce",
+      external: true,
+    },
+    {
+      value: twitter,
+      href: `https://twitter.com/${twitter}`,
+      icon: twitterIcon,
+      alt: "Twitter",
+      animation: "spin",
+      external: true,
+    },
+    {
+      value: youTube,
+      href: `https://www.youtube.com/c/${youTube}`,
+      icon: youTubeIcon,
+      alt: "YouTube",
+      animation: "wiggle",
+      external: true,
+    },
+  ];
+
   return (
     <div
       id="footer"
@@ -50,7 +117,7 @@ const Footer = (props) => {
         gap: "2.5rem",
         padding: "5rem 0 3rem",
         backgroundColor: primaryColor,
-        width: "100vw"
+        width: "100vw",
       }}
     >
       <div
@@ -58,59 +125,24 @@ const Footer = (props) => {
           display: "flex",
           justifyContent: "center",
           gap: "2.5rem",
+          flexWrap: "wrap",
         }}
       >
-        {email && (
-          <a href={`mailto:${email}`}>
-            <img src={envelopeIcon} alt="email" className="socialIcon" />
-          </a>
-        )}
-        {devDotTo && (
-          <a href={`https://dev.to/${devDotTo}`} target="_blank" rel="noopener noreferrer">
-            <img src={devDotToIcon} alt="Dev.to" className="socialIcon" />
-          </a>
-        )}
-        {gitHub && (
-          <a href={`https://github.com/${gitHub}`} target="_blank" rel="noopener noreferrer">
-            <img src={gitHubIcon} alt="GitHub" className="socialIcon" />
-          </a>
-        )}
-        {instagram && (
-          <a
-            href={`https://www.instagram.com/${instagram}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={instagramIcon} alt="Instagram" className="socialIcon" />
-          </a>
-        )}
-        {linkedIn && (
-          <a
-            href={`https://www.linkedin.com/in/${linkedIn}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={linkedInIcon} alt="LinkedIn" className="socialIcon" />
-          </a>
-        )}
-        {medium && (
-          <a href={`https://medium.com/@${medium}`} target="_blank" rel="noopener noreferrer">
-            <img src={mediumIcon} alt="Medium" className="socialIcon" />
-          </a>
-        )}
-        {twitter && (
-          <a href={`https://twitter.com/${twitter}`} target="_blank" rel="noopener noreferrer">
-            <img src={twitterIcon} alt="Twitter" className="socialIcon" />
-          </a>
-        )}
-        {youTube && (
-          <a
-            href={`https://www.youtube.com/c/${youTube}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={youTubeIcon} alt="YouTube" className="socialIcon" />
-          </a>
+        {socialLinks.map((social) =>
+          social.value ? (
+            <a
+              key={social.alt}
+              href={social.href}
+              target={social.external ? "_blank" : undefined}
+              rel={social.external ? "noopener noreferrer" : undefined}
+            >
+              <img
+                src={social.icon}
+                alt={social.alt}
+                className={`socialIcon ${social.animation}`}
+              />
+            </a>
+          ) : null
         )}
       </div>
       <p className="small" style={{ marginTop: 0, color: "white" }}>
